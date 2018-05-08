@@ -8,7 +8,8 @@ using namespace std;
 bool IsOperator(char C);
 bool IsOperand(char c);
 int Precedence(char op);
-bool validEXP(string exp);
+bool validEXP(string exp); //checks for duplicates and even number of paranthesis
+bool ParanthesisisBalanced(string expr);//Checks if paranthesis are balanced
 
 int main()
 {
@@ -18,7 +19,7 @@ int main()
 	cout << "Enter an infix experssion:	" << endl;
 	cin >> expression;
 
-	while (validEXP(expression) != true)
+	while (validEXP(expression) != true && ParanthesisisBalanced(expression) != true)
 	{
 		cout << "Not a valid infix expression" << endl;
 		cin >> expression;
@@ -99,7 +100,8 @@ int Precedence(char op1)
 bool validEXP(string expression)
 {
 	char prev = ' ';
-	string bracketCheck = "";
+	int bracketCheck = 0;
+
 	for (int i = 0; i < expression.length(); i++)
 	{
 		if (i > 0)
@@ -112,49 +114,71 @@ bool validEXP(string expression)
 		}
 		if (expression[i] == '(')
 		{
-			bracketCheck += expression[i];
+			bracketCheck++;
 		}
 		if (expression[i] == ')')
 		{
-			bracketCheck += expression[i];
+			bracketCheck++;
 		}
 	}
-	if (bracketCheck.size() % 2 != 0)
+	if (bracketCheck % 2 != 0)
 	{
 		return false;
 	}
-		
-for (int j = 0; j < bracketCheck.length(); j++)
-{
-	bool leftBracket = false;
-	bool rightBracket = false;
-	if (bracketCheck[0] != '(')
-	{
-		return false;
-	}
-	if (bracketCheck[bracketCheck.length()] != ')')
-	{
-		return false;
-	}
-	if (j > 0)
-	{
-		if (bracketCheck[j - 1] == '(')
-		{
-			leftBracket = true;
-		}
-		else
-		{
-			return leftBracket;
-		}
+	else
+		return true;
 
-		if (bracketCheck[j] == ')')
+	
+}
+
+bool ParanthesisisBalanced(string expr)
+{
+	LinkedStack<char> s;
+	char a, b, c;
+
+	// Traversing the Expression
+	for (int i = 0; i<expr.length(); i++)
+	{
+		if (expr[i] == '(' )
 		{
-			rightBracket = true;
+			// Push the element in the stack
+			s.push(expr[i]);
 		}
 		else
 		{
-			return rightBracket;
+			switch (expr[i])
+			{
+			case ')':
+
+				// Store the top element in a
+				a = s.peek();
+				s.pop();
+				if (a == '{' || a == '[')
+					cout << "Not Balancedn";
+				break;
+			case '}':
+
+				// Store the top element in b
+				b = s.peek();
+				s.pop();
+				if (b == '(' || b == '[')
+					cout << "Not Balancedn";
+				break;
+			case ']':
+
+				// Store the top element in c
+				c = s.peek();
+				s.pop();
+				if (c == '(' || c == '{')
+					cout << "Not Balancedn";
+				break;
+			}
 		}
 	}
-}
+
+	// Check Empty Stack
+	if (s.isEmpty())
+		return true;
+	else
+		return false;
 }
