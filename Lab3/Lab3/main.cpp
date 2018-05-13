@@ -12,21 +12,21 @@ bool isaNumber(char c);
 bool isaLetter(char c);
 bool isSpecial(char c);
 void Radix();
-string GenerateString(string arr[]);
+string GenerateString();
 int main()
 {
 	srand(time(NULL));
 	int digitCount, specialCount, charCount;
 	
 	string queues[10000];
-	cout << queues->size() << endl;
-	for (int i = 0; i < queues->size(); i++)
+	
+	for (int i = 0; i < 10000; i++)
 	{
-		queues[i] = GenerateString(queues);
-
+		queues[i] = GenerateString();
 	}
+	cout << queues->size() << endl;
 	cout << "Printing Array" << endl;
-	for (int i = 0; i < queues->size(); i++)
+	for (int i = 0; i < 10000; i++)
 	{
 		cout << queues[i] << endl;
 	}
@@ -37,7 +37,7 @@ int main()
 
 }
 
-string GenerateString( string arr[])
+string GenerateString()
 {
 	string characters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*";
 	string temp = "";
@@ -45,15 +45,13 @@ string GenerateString( string arr[])
 	int randomCharacter = rand() % (characters.length()-1) + 0;
 	for (int i = 0; i < stringlength; i++)
 	{
-		temp = characters[randomCharacter];
+		temp += characters[randomCharacter];
 	}
 	return temp;
 }
 
 void Radix()
 {
-	
-	
 	LinkedQueue<char> queues[95];
 }
 
