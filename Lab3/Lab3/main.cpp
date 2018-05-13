@@ -12,35 +12,40 @@ bool isaNumber(char c);
 bool isaLetter(char c);
 bool isSpecial(char c);
 void Radix();
-string GenerateString(string cha,string arr[]);
+string GenerateString(string arr[]);
 int main()
 {
 	srand(time(NULL));
 	int digitCount, specialCount, charCount;
-	string characters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*";
+	
 	string queues[10000];
 	cout << queues->size() << endl;
 	for (int i = 0; i < queues->size(); i++)
 	{
-		GenerateString(characters, queues);
+		queues[i] = GenerateString(queues);
+
 	}
+	cout << "Printing Array" << endl;
 	for (int i = 0; i < queues->size(); i++)
 	{
-		cout << "Printing Array" << endl;
 		cout << queues[i] << endl;
 	}
 
 	system("pause");
+	return 0;
+
+
 }
 
-string GenerateString(string characters, string arr[])
+string GenerateString( string arr[])
 {
+	string characters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*";
 	string temp = "";
-	int stringlength = rand() % 14 + 0;
+	int stringlength = rand() % 15 + 1;
 	int randomCharacter = rand() % (characters.length()-1) + 0;
 	for (int i = 0; i < stringlength; i++)
 	{
-		temp += characters[randomCharacter];
+		temp = characters[randomCharacter];
 	}
 	return temp;
 }
