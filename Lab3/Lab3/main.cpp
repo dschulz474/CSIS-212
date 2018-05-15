@@ -11,8 +11,9 @@ using namespace std;
 bool isaNumber(string c);
 bool isaLetter(string c);
 bool isSpecial(string c);
-void Radix();
+void Radix(string arr[], int size);
 string generateChar();
+
 int main()
 {
 	srand((unsigned)time(NULL));
@@ -31,18 +32,10 @@ int main()
 			temp2 += temp;
 		}
 		queues[i] = temp2;
-		
 	}
-	cout << "Printing array" << endl;
-	for (int i = 0; i < 10000; i++)
-	{
-		cout << queues[i] << endl;
-	}
-
+	Radix(queues, 10000);
 	system("pause");
 	return 0;
-
-
 }
 
 string generateChar()
@@ -52,6 +45,7 @@ string generateChar()
 	string special = "@#$%^&*";
 	string temp;
 	int randomChar = rand() % 10 + 1;
+
 	if (randomChar <= 8)
 	{
 		temp = characters[rand() % (numbers.length()-1) + 0];
@@ -67,9 +61,11 @@ string generateChar()
 	
 	return temp;
 }
-void Radix()
+
+void Radix(string arr[], int size)
 {
 	LinkedQueue<string> queues;
+	
 }
 
 bool isaLetter(string c)
@@ -89,6 +85,7 @@ bool isSpecial(string c)
 	}
 	else return false;
 }
+
 bool isaNumber(string c)
 {
 	if (c >= "0" || c <= "9")
