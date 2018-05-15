@@ -17,15 +17,7 @@ int main()
 {
 	srand((unsigned)time(NULL));
 	string queues[10000];
-	int letterCount = 0;
-	int digitCount = 0;
-	int specialCount = 0;
-	int letterLimit = 10000 * (8 / 10);
-	int digitLimit = 10000 * (1 / 10);
-	int specialLimit = 10000 * (1 / 10);
 	
-
-
 	for (int i = 0; i < 10000; i++)
 	{
 		
@@ -77,7 +69,7 @@ string generateChar()
 }
 void Radix()
 {
-
+	LinkedQueue<string> queues;
 }
 
 bool isaLetter(string c)
