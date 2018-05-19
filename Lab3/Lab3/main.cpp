@@ -8,9 +8,7 @@
 #include <string>
 using namespace std;
 
-bool isaNumber(string c);
-bool isaLetter(string c);
-bool isSpecial(string c);
+
 void Radix(string arr[], int size);
 string generateChar();
 
@@ -26,18 +24,41 @@ int main()
 		int stringLength = rand() % 15 + 1;
 		for (int j = 0; j <= stringLength-1; j++)
 		{
-			/*string temp = "";
-			temp = generateChar();*/
-			
 			temp2 += generateChar();
 		}
 		randStrings[i] = temp2;
 	}
-	for (int i = 0; i < 15; i++)
+	//Pre Sort
+	cout << "Pre Radix Sort" << endl;
+	for (int i = 0; i < 10; i++)
+	{
+		cout << randStrings[i] << endl;
+	}
+	for (int i = 5000; i < 5010; i++)
+	{
+		cout << randStrings[i] << endl;
+	}
+	for (int i = 9990; i < 10000; i++)
 	{
 		cout << randStrings[i] << endl;
 	}
 	Radix(randStrings, 10000);
+	//Post Sort
+	cout << "Post Radix Sort" << endl;
+	cout << endl;
+	for (int i = 0; i < 10; i++)
+	{
+		cout << randStrings[i] << endl;
+	}
+	for (int i = 5000; i < 5010; i++)
+	{
+		cout << randStrings[i] << endl;
+	}
+	for (int i = 9990; i < 10000; i++)
+	{
+		cout << randStrings[i] << endl;
+	}
+	
 	system("pause");
 	return 0;
 }
@@ -81,6 +102,16 @@ void Radix(string arr[], int size)
 			else
 			{
 				queues[0].enqueue(arr[j]);
+			}
+		}
+		for (int k = 0; k < 94; k++)
+		{
+			int temp = 0;
+			while (!queues[k].isEmpty())
+			{
+				arr[temp] = queues[k].peekFront();
+				queues[k].dequeue();
+				temp++;
 			}
 		}
 	}
