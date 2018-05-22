@@ -10,6 +10,7 @@ using namespace std;
 
 
 void Radix(string arr[], int size);
+
 string generateChar();
 
 int main()
@@ -104,17 +105,17 @@ void Radix(string arr[], int size)
 				queues[0].enqueue(arr[j]);
 			}
 		}
-		for (int k = 0; k < 94; k++)
+		for (int i = 0; i < 94; i++)
 		{
-			int temp = 0;
-			while (!queues[k].isEmpty())
+			int index = 0;
+			while (!queues[i].isEmpty())
 			{
-				arr[temp] = queues[k].peekFront();
-				queues[k].dequeue();
-				temp++;
+				arr[index] = queues[i].peekFront();
+				queues[i].dequeue();
+				index++;
 			}
 		}
 	}
-	
 }
+
 
