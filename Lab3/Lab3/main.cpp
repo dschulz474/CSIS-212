@@ -91,31 +91,31 @@ string generateChar()
 void Radix(string arr[], int size)
 {
 	LinkedQueue<string> queues[95];
-	for (int i = 14; i < 0; i--)
+	for (int i = 14; i >= 0; i--)
 	{
 		for (int j = 0; j < size; j++)
 		{
-			if (arr[j].length()>i) 
+			if (arr[j].length()>i)
 			{
 				int temp = arr[j][i];
-				queues[temp-32].enqueue(arr[j]);
+				queues[temp - 32].enqueue(arr[j]);
 			}
 			else
 			{
 				queues[0].enqueue(arr[j]);
 			}
 		}
-		for (int i = 0; i < 94; i++)
+		int index = 0;
+		for (int k = 0; k < 95; k++)
 		{
-			int index = 0;
-			while (!queues[i].isEmpty())
+
+			while (!queues[k].isEmpty())
 			{
-				arr[index] = queues[i].peekFront();
-				queues[i].dequeue();
+				arr[index] = queues[k].peekFront();
+				queues[k].dequeue();
 				index++;
 			}
 		}
 	}
 }
-
 
