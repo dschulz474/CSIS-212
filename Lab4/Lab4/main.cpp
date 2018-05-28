@@ -8,22 +8,22 @@
 #include <iostream>
 
 using namespace std;
-int tollSim(int numberofBooths);
+int tollSim(int numberofBooths,int numofCars);
 int tollKind();
 
 int main()
 {
 	srand((time(NULL)));
-	
-	cout << "Time: " << tollSim(2) << endl;
-	cout << "Time: " << tollSim(3) << endl;
-	cout << "Time: " << tollSim(4) << endl;
-	cout << "Time: " << tollSim(5) << endl;
+	int numofCars = rand() % 100 + 1;
+	cout << "Time: " << tollSim(2,numofCars) << endl;
+	cout << "Time: " << tollSim(3,numofCars) << endl;
+	cout << "Time: " << tollSim(4,numofCars) << endl;
+	cout << "Time: " << tollSim(5,numofCars) << endl;
 	system("pause");
 	return 0;
 }
 
-int tollSim(int numberofBooths)
+int tollSim(int numberofBooths, int numofCars)
 {
 	LinkedQueue<int> booth1;
 	LinkedQueue<int> booth2;
@@ -31,7 +31,7 @@ int tollSim(int numberofBooths)
 	LinkedQueue<int> booth4;
 	LinkedQueue<int> booth5;
 
-	int numofCars = rand() % 100 + 1;
+	
 	int time = 0;
 	cout << "Total Cars: "<< numofCars << endl;
 	if (numberofBooths == 2)
