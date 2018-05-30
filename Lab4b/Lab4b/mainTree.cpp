@@ -9,6 +9,7 @@
 #include <iostream>
 #include <string>
 #include "BinarySearchTree.h"
+#include <fstream>
 
 using namespace std;
 
@@ -18,17 +19,25 @@ void print(string& n){
 
 int main()
 {
+	ifstream infile;
+	string line;
     BinarySearchTree<string> t;
-    
-	t.add("Jose"); 
-	t.add("Deepak");
-	t.add("Anton");
-	t.add("Elisa");
-	t.add("Quiang");
-	t.add("Mia");
-	t.add("Zoe");
-
-	t.inorderTraverse(print);
-	cout << endl;
+	infile.open("Names.txt");
+	if (!infile)
+	{
+		cout << "Error opening file. \n";
+	}
+	else
+	{	
+		while (getline(infile,line))
+		{
+			cout << line << endl;
+			t.add(line);
+		}
+		infile.close();
+		
+	}
+	
 	system("pause");
+	return 0;
 }
