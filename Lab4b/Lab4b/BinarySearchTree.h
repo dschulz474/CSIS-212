@@ -18,6 +18,7 @@ class BinarySearchTree : public BinaryNodeTree<ItemType>
 {
 private:
    BinaryNode<ItemType>* rootPtr;
+  
    
 protected:
    //------------------------------------------------------------
@@ -60,7 +61,7 @@ public:
    BinarySearchTree(const ItemType& rootItem);
    BinarySearchTree(const BinarySearchTree<ItemType>& tree);
    virtual ~BinarySearchTree();
-   
+ 
    //------------------------------------------------------------
    // Public Methods Section.
    //------------------------------------------------------------
@@ -74,7 +75,7 @@ public:
    void clear();
    ItemType getEntry(const ItemType& anEntry) const;
    bool contains(const ItemType& anEntry) const;
-   void printMap(const ItemType&); 
+   void printMap();
    //------------------------------------------------------------
    // Public Traversals Section.
    //------------------------------------------------------------

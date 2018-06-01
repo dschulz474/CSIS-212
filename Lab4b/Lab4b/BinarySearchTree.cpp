@@ -241,6 +241,11 @@ void BinarySearchTree<ItemType> ::inorderTraverse(void visit(ItemType&)) const
 }
 
 template <class ItemType>
+void BinarySearchTree<ItemType>::printMap()
+{
+	
+}
+template <class ItemType>
 void BinarySearchTree<ItemType> ::postorderTraverse(void visit(ItemType&)) const
 {
 	BinaryNodeTree<ItemType>::postorder(visit, rootPtr);
