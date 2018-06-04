@@ -75,7 +75,7 @@ public:
    void clear();
    ItemType getEntry(const ItemType& anEntry) const;
    bool contains(const ItemType& anEntry) const;
-   void printMap();
+   void printMap(const ItemType& rootEntry, int indent);
    //------------------------------------------------------------
    // Public Traversals Section.
    //------------------------------------------------------------

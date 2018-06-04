@@ -241,8 +241,13 @@ void BinarySearchTree<ItemType> ::inorderTraverse(void visit(ItemType&)) const
 }
 
 template <class ItemType>
-void BinarySearchTree<ItemType>::printMap()
+void BinarySearchTree<ItemType>::printMap(const ItemType& rootEntry, int indent)
 {
+	if (rootEntry->leftChildPtr != nullptr)
+	{
+
+	}
+	
 	
 }
 template <class ItemType>

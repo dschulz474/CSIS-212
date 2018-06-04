@@ -22,6 +22,7 @@ void print(string& n){
 	
 }
 
+
 int main()
 {
 	ifstream infile;
@@ -51,6 +52,7 @@ int main()
 	else cout << input2 << " does not exist" << endl;
 	t.remove("Xena II");
 	t.inorderTraverse(print);
+	cout << endl;
 	t.printMap(t.getRootData(), 0);
 	system("pause");
 	return 0;
