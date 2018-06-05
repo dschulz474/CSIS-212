@@ -26,7 +26,7 @@ HashedDictionary<KeyType, ItemType>::~HashedDictionary()
 }
 
 template <class KeyType, class ItemType>
-int HashedDictionary<KeyType, ItemType>::getHashIndex(const KeyType& sKey)
+int HashedDictionary<KeyType, ItemType>::getHashIndex(const KeyType& sKey) const
 {
 	int x = 0;
 	for (int i = 0; i < sKey.size(); i++)
