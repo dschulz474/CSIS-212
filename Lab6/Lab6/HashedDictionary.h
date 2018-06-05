@@ -25,7 +25,7 @@ private:
    HashedEntry<KeyType, ItemType> *hashTable[TABLE_SIZE];
    
    //void traversalHelper(Entry<KeyType, ItemType>& theEntry);
-    int getHashIndex(const KeyType&);
+    int getHashIndex(const KeyType&) const;
 	int numofItems;
    
 public:
