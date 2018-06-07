@@ -13,7 +13,7 @@
 
 #include "DictionaryInterface.h"
 #include "HashedEntry.h"
-//#include "NotFoundException.h"
+#include "NotFoundException.h"
 
 const int TABLE_SIZE = 11;
 
@@ -41,12 +41,12 @@ public:
     bool add(const KeyType& searchKey, const ItemType& newItem);
    bool remove(const KeyType& searchKey);
    void clear();
-   ItemType getItem(const KeyType& searchKey) const; // throw (NotFoundException);
+   ItemType getItem(const KeyType& searchKey) const  throw (NotFoundException);
    bool contains(const KeyType& searchKey) const;
    
    /** Traverses the items in this dictionary in sorted search-key order
     and calls a given client function once for each item. */
-   void traverse(void visit(ItemType&)) const;
+   void traverse(void visit(ItemType&)) ;
 }; // end HashedDictionary
 
 #include "HashedDictionary.cpp"

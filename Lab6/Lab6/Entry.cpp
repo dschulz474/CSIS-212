@@ -1,56 +1,59 @@
-//  Created by Frank M. Carrano and Tim Henry.
-//  Copyright (c) 2013 __Pearson Education__. All rights reserved.
-
-#include "Entry.h"
+/** @file Node.cpp */
 
 #ifndef ENTRY_CPP
 #define ENTRY_CPP
 
-template <class KeyType, class ItemType>
+#include "Entry.h" 
+#include <cstddef>
+
+template<class KeyType, class ItemType>
+Entry<KeyType, ItemType>::Entry()
+{
+}  // end default constructor
+ 
+template<class KeyType, class ItemType>
+Entry<KeyType, ItemType>::Entry(ItemType anItem, KeyType anKey):
+item(anItem), searchKey(anKey)
+{
+}  // end constructor
+
+template<class KeyType, class ItemType>
+void Entry<KeyType, ItemType>::setItem(const ItemType& anItem)
+{
+    item = anItem;
+}  // end setItem
+
+template<class KeyType, class ItemType>
+void Entry<KeyType, ItemType>::setKey(const KeyType& key) 
+{
+    searchKey = key;
+}  // end setKey
+
+
+template<class KeyType, class ItemType>
+ItemType Entry<KeyType, ItemType>::getItem() const
+{
+    return item;
+}  // end getItem
+
+template<class KeyType, class ItemType>
+KeyType Entry<KeyType, ItemType>::getKey() const
+{
+    return searchKey;
+}  // end getItem
+
+
+
+template<class KeyType, class ItemType>
 bool Entry<KeyType, ItemType>::operator==(const Entry<KeyType, ItemType>& rightHandItem) const
 {
-   return (searchKey == rightHandItem.getKey());
-}  // end operator==
-
-template <class KeyType, class ItemType>
-Entry<KeyType, ItemType>::Entry() : item(0), searchKey("")
-{
+	return searchKey == rightHandItem.searchKey;
 }
 
-template <class KeyType, class ItemType>
-Entry<KeyType, ItemType>::Entry(ItemType newEntry, KeyType sKey):
-item(newEntry), searchKey(sKey)
+template<class KeyType, class ItemType>
+bool Entry<KeyType, ItemType>::operator>(const Entry<KeyType, ItemType>& rightHandItem) const
 {
-
+	return searchKey > rightHandItem.searchKey;
 }
 
-template <class KeyType, class ItemType>
-ItemType  Entry<KeyType, ItemType>::getItem() const
-{
-	return item;
-}
-
-template <class KeyType, class ItemType>
-KeyType  Entry<KeyType, ItemType>::getKey() const
-{
-	return searchKey;
-}
-
-template <class KeyType, class ItemType>
-void  Entry<KeyType, ItemType>::setItem(const ItemType& newEntry)
-{
-	item = newEntry;
-}
-
-template <class KeyType, class ItemType>
-bool  Entry<KeyType, ItemType>::operator>(const Entry<KeyType, ItemType>& rightHandItem) const
-{
-	return (searchKey > rightHandItem.getKey());
-}
-
-template <class KeyType, class ItemType>
-void Entry<KeyType, ItemType>::setKey(const KeyType& sKey)
-{
-	searchKey = sKey;
-}
 #endif

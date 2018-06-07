@@ -70,8 +70,7 @@ bool HashedDictionary<KeyType, ItemType>::remove(const KeyType& searchKey)
       // Special case - first node has target
       if (searchKey == hashTable[itemHashIndex]->getKey())
       {
-         HashedEntry<KeyType, ItemType>* entryToRemovePtr =
-         hashTable[itemHashIndex];
+         HashedEntry<KeyType, ItemType>* entryToRemovePtr = hashTable[itemHashIndex];
          hashTable[itemHashIndex] = hashTable[itemHashIndex]->getNext();
          delete entryToRemovePtr;
 		 numofItems--;
@@ -113,8 +112,8 @@ bool HashedDictionary<KeyType, ItemType>::isEmpty() const
 	
 	for (int i = 0; i < TABLE_SIZE; i++)
 	{
-		if (hashtable[i] != nullptr)
-			return false
+		if (hashTable[i] != nullptr)
+			return false;
 	}
 	return true;
 }
@@ -142,9 +141,18 @@ void HashedDictionary<KeyType, ItemType>::clear()
 }
 
 template <class KeyType, class ItemType>
-ItemType HashedDictionary<KeyType, ItemType>::getItem(const KeyType& searchKey) const
+ItemType HashedDictionary<KeyType, ItemType>::getItem(const KeyType& searchKey) const throw(NotFoundException)
 {
-    return 0;
+	int itemHashIndex = getHashIndex(searchKey);
+	
+	if (searchKey == hashTable[itemHashIndex]->getKey())
+	{
+		cout << hashTable[itemHashIndex] << " ";
+		return hashTable[itemHashIndex]->getItem();
+	}
+	else
+		throw NotFoundException("Item does not exist.");
+		
 }
 
 template <class KeyType, class ItemType>
@@ -152,18 +160,50 @@ bool HashedDictionary<KeyType, ItemType>::contains(const KeyType& searchKey) con
 {
 	int itemHashIndex = getHashIndex(searchKey);
 	bool itemFound = false;
-	while (hashTable[itemHashIndex] != nullptr && !itemFound)
+	if (hashTable[itemHashIndex] != nullptr)
 	{
-
-	}
+		if (searchKey == hashTable[itemHashIndex]-> getKey())// if first node is target 
+		{
+			itemFound = true;
+			return itemFound;
+		}
+		else
+		{
+			HashedEntry<KeyType, ItemType>* prevPtr = hashTable[itemHashIndex];
+			HashedEntry<KeyType, ItemType>* curPtr = prevPtr->getNext();
+			while ((curPtr != nullptr) && !itemFound)
+			{
+				if (searchKey == curPtr->getKey())// return true if curPtr is target 
+				{
+					itemFound = true;
+					return itemFound;
+				}
+				else//otherwise move on to next node
+				{
+					prevPtr = curPtr;
+					curPtr = curPtr->getNext();
+				}
+			}
+		}
+	}//if target is not found return false
     return false;
 }
 
 template <class KeyType, class ItemType>
-void HashedDictionary<KeyType, ItemType>::traverse(void visit(ItemType&)) const
+void HashedDictionary<KeyType, ItemType>::traverse(void visit(ItemType&)) 
 {
     int x = 0;
-	for ()
+	int y = 0;
+	for (int i = 0; i < TABLE_SIZE; i++)
+	{
+		if (hashTable[i] != nullptr)
+		{
+			x = hashTable[i]->getItem();
+			cout << hashTable[i]->getKey() << " ";
+			visit(x);
+			
+		}
+	}
 }
 
 //HashedDictionary<std::string, int> xyz;

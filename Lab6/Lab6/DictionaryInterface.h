@@ -61,7 +61,7 @@ public:
     @post  The given function’s action occurs once for each item in the
        dictionary and possibly alters the item.
     @param visit A client function. */
-   virtual void traverse(void visit(ItemType&)) const = 0;
+   virtual void traverse(void visit(ItemType&))  = 0;
 }; // end DictionaryInterface
 
 #endif

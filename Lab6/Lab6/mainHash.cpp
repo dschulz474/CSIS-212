@@ -3,9 +3,10 @@
 #include "HashedDictionary.h"
 
 using namespace std;
+
 void print(int& n)
 {
-	cout << n << " ";
+	cout << n << " " << endl;
 }
 int main()
 {
@@ -17,13 +18,13 @@ int main()
 	table.add("Samantha Abernathy", 59);
 	table.add("George Ivy", 27);
 	
-	table.traverse(print);
 
-	
-	/*do
+	string name;
+	int input;
+	do
 	{
 		cout << "1) Print Hash table" << endl
-			<< "2) Retrieve Has item" << endl
+			<< "2) Retrieve Hash item" << endl
 			<< "3) delete Item" << endl
 			<< "4) Read names from file" << endl
 			<< "5) Save names to file" << endl
@@ -32,9 +33,16 @@ int main()
 		cin >> input;
 		if (input == 1)
 		{
-
+			table.traverse(print);
+			cout << endl;
 		}
-	} while (input != 0);*/
+		else if (input == 2)
+		{
+			cout << "Search for a name" << endl;
+			getline(cin, name);
+			table.getItem(name);
+		}
+	} while (input != 0);
 	cout << "Closing Program" << endl;
 
 		

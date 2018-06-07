@@ -38,4 +38,9 @@ HashedEntry<KeyType, ItemType>* HashedEntry<KeyType, ItemType>::getNext() const
 {
 	return nextPtr;
 }
+template <class KeyType, class ItemType>
+void HashedEntry< KeyType,  ItemType>::traverse(void visit(ItemType&), HashedEntry<KeyType, ItemType>* currPtr) const
+{
+
+}
 #endif

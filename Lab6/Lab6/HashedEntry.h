@@ -17,7 +17,8 @@ class HashedEntry : public Entry<KeyType, ItemType>
 {
 private:
    HashedEntry<KeyType, ItemType>* nextPtr;
-   
+protected:
+	void traverse(void visit(ItemType&), HashedEntry<KeyType, ItemType>* currPtr) const;
 public:
    HashedEntry();
    HashedEntry(ItemType newEntry, KeyType searchKey);
