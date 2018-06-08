@@ -42,6 +42,16 @@ int main()
 			getline(cin, name);
 			table.getItem(name);
 		}
+		else if (input == 3)
+		{
+			cout << "Name to delete" << endl;
+			getline(cin, name);
+			table.remove(name);
+		}
+		else if (input == 4)
+		{
+			cout << "Reading names from file" << endl;
+		}
 	} while (input != 0);
 	cout << "Closing Program" << endl;
 
