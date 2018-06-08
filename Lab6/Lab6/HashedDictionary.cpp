@@ -144,11 +144,17 @@ template <class KeyType, class ItemType>
 ItemType HashedDictionary<KeyType, ItemType>::getItem(const KeyType& searchKey) const throw(NotFoundException)
 {
 	int itemHashIndex = getHashIndex(searchKey);
-	
-	if (searchKey == hashTable[itemHashIndex]->getKey())
+	HashedEntry<KeyType, ItemType> *ptr = hashTable[itemHashIndex];
+	if (ptr != nullptr)
 	{
-		cout << hashTable[itemHashIndex] << " ";
-		return hashTable[itemHashIndex]->getItem();
+		while (ptr != nullptr)
+		{
+			if (searchKey == ptr->getKey())
+			{
+				return ptr->getItem();
+			}
+			ptr = ptr->getNext();
+		}
 	}
 	else
 		throw NotFoundException("Item does not exist.");

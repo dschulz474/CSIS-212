@@ -31,6 +31,8 @@ int main()
 			<< "6) add item" << endl
 			<< "0) quit" << endl;
 		cin >> input;
+		cin.clear();
+		cin.ignore();
 		if (input == 1)
 		{
 			table.traverse(print);
@@ -40,7 +42,20 @@ int main()
 		{
 			cout << "Search for a name" << endl;
 			getline(cin, name);
-			table.getItem(name);
+			cout << table.getItem(name) << endl;
+		}
+		else if (input == 3)
+		{
+			cout << "Enter a name to delete" << endl;
+			getline(cin, name);
+			if (table.contains(name))
+			{
+				table.remove(name);
+			}
+			else
+			{
+				cout << "Cannot delete entry" << endl;
+			}
 		}
 		else if (input == 3)
 		{
