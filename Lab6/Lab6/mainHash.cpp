@@ -40,7 +40,7 @@ int main()
 		{
 			cout << "Search for a name" << endl;
 			getline(cin, name);
-			table.getItem(name);
+			cout << table.getItem(name) << endl;
 		}
 	} while (input != 0);
 	cout << "Closing Program" << endl;
