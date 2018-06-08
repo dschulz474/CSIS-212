@@ -205,7 +205,8 @@ void HashedDictionary<KeyType, ItemType>::traverse(void visit(ItemType&))
 		if (hashTable[i] != nullptr)
 		{
 			x = hashTable[i]->getItem();
-			cout << hashTable[i]->getKey() << " ";
+			cout << "Slot #" << i;
+			cout << " "<<hashTable[i]->getKey() << " ";
 			visit(x);
 			
 		}

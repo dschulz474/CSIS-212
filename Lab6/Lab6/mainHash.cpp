@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include "HashedDictionary.h"
+#include <fstream>
 
 using namespace std;
 
@@ -10,17 +11,17 @@ void print(int& n)
 }
 int main()
 {
-	/*int input;*/
+	fstream infile;
 	HashedDictionary<string, int> table;
+	string name;
+	int input;
+	int tempItem;
+
 	table.add("Greg Greed", 30);
-	table.add("Sally Smath", 18);
+	table.add("Sally Smith", 18);
 	table.add("James Jones", 44);
 	table.add("Samantha Abernathy", 59);
 	table.add("George Ivy", 27);
-	
-
-	string name;
-	int input;
 	do
 	{
 		cout << "1) Print Hash table" << endl
@@ -66,6 +67,39 @@ int main()
 		else if (input == 4)
 		{
 			cout << "Reading names from file" << endl;
+			infile.open("data.txt");
+			if (!infile)
+				cout << "Error opening file" << endl;
+			else
+			{
+				while (infile)
+				{
+					getline(infile, name);
+					cout << name << endl;
+				}
+			}infile.close();
+		}
+		else if (input == 5)
+		{
+			cout << "Enter a name to save to the file" << endl;
+			getline(cin, name);
+			if (!infile)
+				cout << "Error opening file" << endl;
+			else
+			{
+			if (table.contains(name))
+				{
+					infile << name << ", " << table.getItem(name) << endl;
+				}
+			}infile.close();
+		}
+		else if (input == 6)
+		{
+			cout << "Enter name: " << endl;
+			getline(cin, name);
+			cout << "Emter age: " << endl;
+			cin >> tempItem;
+			table.add(name, tempItem);
 		}
 	} while (input != 0);
 	cout << "Closing Program" << endl;
