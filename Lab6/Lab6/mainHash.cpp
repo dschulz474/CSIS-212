@@ -38,6 +38,7 @@ int main()
 		{
 			table.traverse(print);
 			cout << endl;
+			
 		}
 		else if (input == 2)
 		{
@@ -77,12 +78,14 @@ int main()
 					getline(infile, name);
 					cout << name << endl;
 				}
+				
 			}infile.close();
 		}
 		else if (input == 5)
 		{
 			cout << "Enter a name to save to the file" << endl;
 			getline(cin, name);
+			infile.open("data.txt");
 			if (!infile)
 				cout << "Error opening file" << endl;
 			else
@@ -90,16 +93,28 @@ int main()
 			if (table.contains(name))
 				{
 					infile << name << ", " << table.getItem(name) << endl;
+					
 				}
-			}infile.close();
+			else
+			{
+				table.contains(name);
+			}
+			infile.close();
+			}
+		
 		}
 		else if (input == 6)
 		{
+			if (!infile)
+				cout << "Error opening file" << endl;
+			else
+			{
 			cout << "Enter name: " << endl;
 			getline(cin, name);
 			cout << "Emter age: " << endl;
 			cin >> tempItem;
 			table.add(name, tempItem);
+			}
 		}
 	} while (input != 0);
 	cout << "Closing Program" << endl;

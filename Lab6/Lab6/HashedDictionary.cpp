@@ -200,17 +200,20 @@ void HashedDictionary<KeyType, ItemType>::traverse(void visit(ItemType&))
 {
     int x = 0;
 	int y = 0;
+	int ageAverage = 0;
+	
 	for (int i = 0; i < TABLE_SIZE; i++)
 	{
 		if (hashTable[i] != nullptr)
 		{
 			x = hashTable[i]->getItem();
+			ageAverage += x;
 			cout << "Slot #" << i;
 			cout << " "<<hashTable[i]->getKey() << " ";
 			visit(x);
-			
 		}
 	}
+	cout << "Average Age is: " << ageAverage / getNumberOfItems() << endl;
 }
 
 //HashedDictionary<std::string, int> xyz;
