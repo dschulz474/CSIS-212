@@ -67,13 +67,17 @@ int main()
 			
 			cout << "What record do you want to change" << endl;
 			cin >> input;
+			
+
+			cout << "Enter a name\n";
+			cin.ignore();
+			getline(cin, name);
+			cout << "Enter an age\n";
+			cin >> age;
+			
+
 			iofile.open("data.txt");
 			iofile.seekp((input - 1)*recordLength, ios::beg);
-			cout << "Enter a name" << endl;
-			getline(cin, name);
-			cout << "Enter an age" << endl;
-			cin >> age;
-
 			iofile << setw(nameLength) << name << ","
 			<< setw(ageLength) << endl;
 			iofile.close();
