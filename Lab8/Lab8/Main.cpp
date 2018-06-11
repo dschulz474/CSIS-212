@@ -50,8 +50,8 @@ int main()
 			if (iofile.peek() == EOF)
 			{
 				iofile.open("data.txt", ios::app);
-				iofile << left<< setw(nameLength) << name << ","
-				<< left << setw(ageLength) << age <<endl;
+				iofile << setw(nameLength) << name << ","
+				<< setw(ageLength) << age <<endl;
 				iofile.close();
 			}
 			else
@@ -69,8 +69,21 @@ int main()
 			cin >> input;
 			iofile.open("data.txt");
 			iofile.seekp((input - 1)*recordLength, ios::beg);
-			getline(iofile, name, ',');
-			cout << name << endl;
+			cout << "Enter a name" << endl;
+			getline(cin, name);
+			cout << "Enter an age" << endl;
+			cin >> age;
+
+			iofile << setw(nameLength) << name << ","
+			<< setw(ageLength) << endl;
+			iofile.close();
+		}
+		else if (input == 3)
+		{
+			while (!iofile.eof())
+			{
+
+			}
 		}
 	} while (input != 0);
 	cout << "Closing Program" << endl;
