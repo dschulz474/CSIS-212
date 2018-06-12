@@ -57,7 +57,7 @@ int main()
 			}
 			else
 			{
-				iofile.open("data.txt");
+				iofile.open("data.txt", ios::in | ios::out);
 				iofile << setw(nameLength) << name << ","
 				<< setw(ageLength) << endl;
 				iofile.close();
@@ -99,19 +99,50 @@ int main()
 			iofile.close();
 			cout << endl;
 		}
-		else if (input == 4)
+		else if (input == 4)//Grabs entire line and uses .compare to determine which line bubbles to the top
 		{
-
+			
+			int temp = 1;
+			while (temp != count-1)
+			{
+				while (!iofile.eof())
+				{
+					iofile.open("data.txt", ios::in | ios::out);
+					if (temp == 1)
+					{
+						iofile.seekp((temp)*recordLength, ios::beg);
+						getline(iofile, temp1);
+						iofile.seekp((temp+1)*recordLength, ios::beg);
+						getline(iofile, temp2);
+						if (temp1.compare(temp2))
+						{
+							iofile.seekp((0)*recordLength, ios::beg);
+							iofile << temp2 << endl;
+							iofile.seekp((temp + 1)*recordLength, ios::beg);
+							iofile << temp1 << endl;
+						}
+					}
+					else
+					{
+						iofile.seekp((temp)*recordLength, ios::beg);
+						getline(iofile, temp1);
+						iofile.seekp((temp + 1)*recordLength, ios::beg);
+						getline(iofile, temp2);
+						if (temp1.compare(temp2) > 0)
+						{
+							iofile.seekp((temp)*recordLength, ios::beg);
+							iofile << temp1 << endl;
+							iofile.seekp((temp+1)*recordLength, ios::beg);
+							iofile << temp2 << endl;
+						}
+					}
+				}
+				temp++;
+			}iofile.close();
 		}
 	} while (input != 0);
 	cout << "Closing Program" << endl;
-	/*iofile.open("data.txt");
-	if (!iofile)
-		cout << "Error Opening file" << endl;
-	else
-	{
-
-	}*/
+	
 	system("pause");
 	return 0;
 }
