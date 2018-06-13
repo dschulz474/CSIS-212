@@ -13,9 +13,11 @@ int main()
 	string age, temp1, temp2;
 	string name1, name2;
 	bool swap;
+	int recordNumber;
 	int nameLength = 21;
 	int ageLength = 3;
 	int recordLength = 27;
+	int deletedRecords = 0;
 
 	iofile.open("data.txt", ios::in | ios::out);
 	if (!iofile)
@@ -60,7 +62,7 @@ int main()
 			{
 				iofile.open("data.txt");
 				iofile << setw(nameLength) << name << ","
-				<< setw(ageLength) << endl;
+				<< setw(ageLength) << age<< endl;
 				iofile.close();
 			}
 		}
@@ -94,14 +96,23 @@ int main()
 				 getline(iofile, name, ',');
 				
 				iofile >> age;
-				cout << count<< " "<< name << ", " << age << endl;
-				count++;
+				if (name[0] == '~')
+				{
+					deletedRecords++;
+				}
+				else
+				{
+					cout << count << " " << name << ", " << age << endl;
+					count++;
+				}
+				
 			}
 			iofile.close();
 			cout << endl;
 		}
 		else if (input == 4)
 		{
+			cout << "sorting records by name" << endl;
 			int temp = 1;
 			while (temp != count - 1)
 			{
@@ -125,7 +136,6 @@ int main()
 						iofile << temp2 << endl;
 						iofile.seekp((index + 1)*recordLength, ios::beg);
 						iofile << temp1 << endl;
-						cout << "swapped\n";
 					}
 					iofile.close();
 				}
@@ -155,6 +165,25 @@ int main()
 			else
 				cout << name << " is not in the database" << endl;
 			
+			
+		}
+		else if (input == 6)
+		{
+			cout << "What Record do you want to delete?" << endl;
+			cin >> recordNumber;
+			
+			iofile.open("data.txt", ios::in | ios::out);
+			iofile.seekg((recordNumber -1)*recordLength, ios::beg);
+
+			ws(iofile);
+			getline(iofile, name, ',');
+			name[0] = '~';
+			iofile >> age;
+			iofile.seekp((recordNumber - 1) *recordLength, ios::beg);
+			iofile << setw(nameLength) << name << ","
+				<< setw(ageLength) << age << endl;
+			count--;
+			iofile.close();
 		}
 	} while (input != 0);
 	cout << "Closing Program" << endl;
